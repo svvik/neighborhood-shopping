@@ -19,6 +19,7 @@ const GMap = withScriptjs(withGoogleMap((props) =>
                             <InfoWindow>
                                 <div className='info-window'>
                                     <h4>{place.name}</h4>
+                                    <span>Location: {place.location.address}</span>
                                 </div>
                             </InfoWindow>
                         )
