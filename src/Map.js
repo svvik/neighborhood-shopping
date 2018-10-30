@@ -13,6 +13,7 @@ const GMap = withScriptjs(withGoogleMap((props) =>
                     position={{lat: place.location.lat, lng: place.location.lng}}
                     title={place.name}
                     onClick={() => props.makerClick(place.id)}
+                    animation={2}
                     visible={props.isVisible(place.id)}>
                     {
                         props.isInfoVisible(place.id) && (
@@ -26,7 +27,6 @@ const GMap = withScriptjs(withGoogleMap((props) =>
                     }
                 </Marker>
             ))}
-
     </GoogleMap>
 ))
 
@@ -37,6 +37,10 @@ class Map extends Component {
             if (vpl.venue.id == id) return true;
         }
         return false;
+    }
+
+    componentDidCatch(error, info) {
+        this.props.onErrorAction();
     }
 
     render() {
@@ -51,7 +55,7 @@ class Map extends Component {
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyALDsIyMq2lob4RYYwMHS_Ou68iFVp7fLA&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div className='map-loading'/>}
             containerElement={<div className='map-container'/>}
-            mapElement={<div className='map'/>}
+            mapElement={<div className='map' role="application" aria-label="Map with locations"/>}
         />;
     }
 }

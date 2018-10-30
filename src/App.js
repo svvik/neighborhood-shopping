@@ -4,6 +4,8 @@ import ListView from './ListView'
 import * as FSQR from './Foursquare'
 import escapeRegExp from 'escape-string-regexp'
 import {Grid, Row, Col} from 'react-bootstrap'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class App extends React.Component {
 
@@ -21,7 +23,11 @@ class App extends React.Component {
 
     componentDidMount() {
         FSQR.getItems(this.location, 'shopping')
-            .then((items) => this.handleItems(items));
+            .then((items) => this.handleItems(items))
+            .catch(reason => {
+                console.log(reason);
+                this.handleNoData();
+            });
     }
 
     handleItems(items) {
@@ -30,6 +36,21 @@ class App extends React.Component {
         items.forEach(item => receivedItems.push(item))
         items.forEach(item => visibleItems.push(item))
         this.setState({places: receivedItems, visiblePlaces: visibleItems})
+    }
+
+    handleNoData = () => {
+        const options = {
+            title: 'OUPPPS :(',
+            message: 'Something went wrong and we can\'t display information properly. Considering to refresh application or try visit us later',
+            buttons: [
+                {
+                    label: 'OK'
+                }
+            ],
+            childrenElement: () => <div />,
+            willUnmount: () => {}
+        }
+        confirmAlert(options)
     }
 
     onFilter = (filter) => {
@@ -78,6 +99,7 @@ class App extends React.Component {
                              location={this.location}
                              onPlaceSelect={this.onPlaceSelect}
                              isInfoVisible={this.isInfoVisible}
+                             onErrorAction={this.handleNoData}
                         />
                     </Col>
                     <Col xs={12} xsPush={0} sm={3} smPull={9}>

@@ -4,8 +4,10 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-bootstrap": "^0.32.4",
+    "react-confirm-alert": "^2.0.6",
     "react-dom": "^16.3.2",
     "react-google-maps": "^9.4.5",
+    "react-popup": "^0.9.3",
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {

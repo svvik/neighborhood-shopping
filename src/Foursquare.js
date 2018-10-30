@@ -14,14 +14,10 @@ export const getItems = (ll, interest) => {
     return fetch(`${FOURSQUARE_API}?${queryOfInterest}`)
         .then(r => r.json())
         .then(r => {
-            console.log(r)
             if (!r.response.groups || r.response.groups.length == 0) {
                 return [];
             } else {
                 return r.response.groups[0].items;
             }
-        })
-        .catch(reason => {
-            console.log(reason)
         });
 }

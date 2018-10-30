@@ -7,8 +7,8 @@ class ListView extends Component {
         return (
             <div className="listview">
                 <div className="input-group">
-                    <span className="input-group-addon" id="basic-addon1">Filter</span>
-                    <input type="text" className="form-control" placeholder="Neighborhood Shopping"
+                    <span className="input-group-addon" aria-label="">Filter</span>
+                    <input type="text" className="form-control" role="search" placeholder="Neighborhood Shopping"
                            onChange={(e) => this.props.onFilter(e.target.value)}>
                     </input>
                 </div>
