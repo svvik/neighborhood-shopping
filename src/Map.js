@@ -43,11 +43,6 @@ class Map extends Component {
         this.props.onErrorAction();
     }
 
-    gm_authFailure() {
-        console.log("Authentication failed");
-        document.getElementById('map').innerHTML = "Authentication failed";
-    }
-
     render() {
         return <GMap
             location={this.props.location}
@@ -58,7 +53,6 @@ class Map extends Component {
             makerClick={this.props.onPlaceSelect}
             isInfoVisible={this.props.isInfoVisible}
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyALDsIyMq2lob4RYYwMHS_Ou68iFVp7fLA&v=3.exp&libraries=geometry,drawing,places"
-            // googleMapURL="https://maps.googleapis.com/maps/api/js?key=QWWQE&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div className='map-loading'/>}
             containerElement={<div className='map-container'/>}
             mapElement={<div className='map' role="application" aria-label="Map with locations"/>}
